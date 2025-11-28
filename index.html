@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AllLife - R25k Accidental Cover</title>
 
-    <!-- Developed by: Tseka Junior, Lead Generation Support/DevOps -->
     <script src="https://cdn.tailwindcss.com"></script>
     
     <style>
@@ -190,7 +189,6 @@
 </head>
 <body class="antialiased flex flex-col min-h-screen">
 
-    <!-- top bit -->
     <header class="bg-brand-blue shadow-md sticky top-0 z-50">
         <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
@@ -207,12 +205,11 @@
         </nav>
     </header>
 
-    <!-- popup for errors lol -->
     <div id="angryRedBox" class="hidden fixed top-24 right-4 bg-red-600 text-white p-4 rounded-lg shadow-xl z-50 animate-bounce"></div>
 
     <main class="flex-grow max-w-5xl mx-auto p-4 sm:p-6 lg:p-8 mt-4 w-full">
 
-       
+        
         <section id="landingPage" class="animate-fade-in">
             
             <div class="relative rounded-2xl shadow-2xl overflow-hidden mb-4 h-96"> 
@@ -234,7 +231,6 @@
                 </button>
             </div>
 
-            <!-- ticker text -->
             <div class="bg-white text-slate-900 rounded-xl shadow-md p-4 mb-10 mx-0 md:mx-4 flex items-center overflow-hidden border-2 border-slate-300 border-l-8 border-l-slate-900">
                 <div class="flex-shrink-0 bg-slate-900 text-white px-3 py-1 rounded text-xs font-bold uppercase tracking-wider mr-3 shadow-sm">
                     FACTS
@@ -454,7 +450,6 @@
                     
                     <button id="goBackBtn" class="text-sm text-brand-action hover:underline mb-6 font-semibold" onclick="switchScreens('landingPage')">&larr; Back to Home</button>
                     
-                    <!-- gatekeeper div -->
                     <div id="bouncerDiv" class="mb-10 hidden relative z-20">
                         <div class="bg-slate-50 border-2 border-slate-200 rounded-xl p-6 md:p-8 shadow-xl">
                             <div class="flex items-center gap-3 mb-6">
@@ -522,7 +517,6 @@
                                 <p class="text-xs text-slate-500 mt-1">Entering your ID will automatically calculate your Date of Birth and Age.</p>
                             </div>
                             
-                            <!-- dob logic -->
                             <div class="grid grid-cols-2 gap-4">
                                 <div>
                                     <label for="birthDate" class="block text-sm font-medium text-slate-700">Date of Birth</label>
@@ -693,7 +687,7 @@
         <div class="max-w-6xl mx-auto px-6 text-sm text-blue-200">
             <div class="flex flex-col md:flex-row justify-between items-center md:items-start mb-8 gap-8">
                <div class="max-w-sm text-center md:text-left">
-                    
+                   
                 
                    <img src="alllife-light-logo-new.png" alt="AllLife" class="h-12 mb-4 w-auto mx-auto md:mx-0" onerror="this.src='https://placehold.co/120x50/0d2c54/white?text=AllLife'">
                    
@@ -717,7 +711,6 @@
   
     <div id="popupContainer" class="fixed bottom-6 left-6 z-40 flex flex-col gap-2 pointer-events-none"></div>
 
-    <!-- modal thingy -->
     <div id="summaryModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
         <div class="bg-white rounded-xl shadow-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto">
             <div class="p-6 border-b border-slate-100 flex justify-between items-center">
@@ -727,8 +720,7 @@
                 </button>
             </div>
             <div id="summaryText" class="p-6 space-y-4">
-                <!-- script puts stuff here -->
-            </div>
+                </div>
             <div class="p-6 bg-slate-50 rounded-b-xl text-center">
                 <button onclick="closeSummary()" class="bg-brand-blue text-white font-bold py-2 px-6 rounded-lg hover:bg-opacity-90">Close</button>
             </div>
@@ -952,9 +944,9 @@
             }
 
             let fails = [];
-            if (age < 18 || age > 75) fails.push("age is not within 18-75");
-            if (citizen === 'no') fails.push("not a South African citizen");
-            if (salary === '<10k') fails.push("salary below R10,000");
+            if (age < 18 || age > 75) fails.push("you are not within the 18-75 age range");
+            if (citizen === 'no') fails.push("you are not a South African citizen");
+            if (salary === '<10k') fails.push("your monthly salary is below the R10,000 minimum requirement");
 
             const gateDiv = document.getElementById('bouncerDiv');
 
@@ -989,8 +981,10 @@
                         }
                         
                         if(content) {
+                            let reason = "Unfortunately, you don't qualify for this specific offer because " + fails.join(' and ') + ".";
+
                             content.innerHTML = `
-                                <p class="text-slate-600 mb-6">Unfortunately, you do not qualify for this specific offer based on the details provided.</p>
+                                <p class="text-slate-600 mb-6">${reason}</p>
                                 <div class="flex flex-col gap-4 items-center">
                                     <a href="https://alllife.co.za/" class="inline-block bg-slate-500 hover:bg-slate-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transition w-full md:w-auto">
                                         Explore Other Covers
@@ -1007,7 +1001,7 @@
                 }, 100); 
 
             } else {
-               
+                
                 tempUserData.salary = salary;
                 tempUserData.age = age;
                 tempUserData.citizen = citizen;
