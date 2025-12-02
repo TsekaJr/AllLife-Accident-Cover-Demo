@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head> 
+    <!-- Developed by Tseka Junior, Lead Gen -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AllLife - R25k Accidental Cover</title>
@@ -10,7 +11,7 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap');
         
-        /* just basic setup dont touch */
+        /* only for pc version, do not change styling */
         body {
             font-family: 'Inter', sans-serif;
             background-color: #f8fafc;
@@ -123,6 +124,9 @@
         .btn-grow:hover {
             transform: scale(1.05);
         }
+        .btn-grow:active {
+            transform: scale(0.95);
+        }
         
         .button-link {
             display: inline-block;
@@ -185,18 +189,34 @@
             animation: fadeOut 0.5s ease-out forwards;
         }
 
+        /* Mobile specific visual tweaks(onlyfor mobile) */
+        @media (max-width: 640px) {
+            .step-connector {
+                position: absolute;
+                left: 28px;
+                top: 3.5rem;
+                bottom: -1rem;
+                width: 2px;
+                background-color: #e2e8f0;
+                z-index: 0;
+            }
+            .last-step .step-connector {
+                display: none;
+            }
+        }
+
     </style>
 </head>
-<body class="antialiased flex flex-col min-h-screen">
+<body class="antialiased flex flex-col min-h-screen pb-20 md:pb-0">
 
     <header class="bg-brand-blue shadow-md sticky top-0 z-50">
         <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
+            <div class="flex justify-between items-center h-14 md:h-16">
                 <div class="flex-shrink-0">
                     <img 
                         src="alllife_logo.png" 
                         alt="AllLife" 
-                        class="h-11 w-auto bg-white p-2 rounded-md shadow-sm cursor-pointer hover:opacity-90 transition-opacity"
+                        class="h-9 md:h-11 w-auto bg-white p-1.5 md:p-2 rounded-md shadow-sm cursor-pointer hover:opacity-90 transition-opacity"
                         onclick="switchScreens('landingPage')"
                         onerror="this.src='https://placehold.co/120x50?text=AllLife'; this.style.backgroundColor='white';"
                     >
@@ -207,127 +227,164 @@
 
     <div id="angryRedBox" class="hidden fixed top-24 right-4 bg-red-600 text-white p-4 rounded-lg shadow-xl z-50 animate-bounce"></div>
 
-    <main class="flex-grow max-w-5xl mx-auto p-4 sm:p-6 lg:p-8 mt-4 w-full">
+    <main class="flex-grow max-w-5xl mx-auto p-3 sm:p-6 lg:p-8 mt-2 md:mt-4 w-full">
 
         
         <section id="landingPage" class="animate-fade-in">
             
-            <div class="relative rounded-2xl shadow-2xl overflow-hidden mb-4 h-96"> 
+            <!-- rounded-t means onlyon top -->
+            <div class="relative rounded-2xl md:rounded-2xl shadow-2xl overflow-hidden mb-0 md:mb-4 h-64 md:h-96"> 
                 <img src="https://images.unsplash.com/photo-1542037104857-ffbb0b9155fb?q=80&w=2554&auto=format&fit=crop" 
                      alt="Family" 
                      class="absolute inset-0 w-full h-full object-cover z-0">
                 <div class="absolute inset-0 bg-gradient-to-r from-black/70 to-transparent z-10"></div>
                 
-                <div class="relative text-left z-20 p-8 md:p-16 h-full flex flex-col justify-center">
-                    <h1 class="text-4xl md:text-5xl font-extrabold text-white leading-tight drop-shadow-lg">Get R25,000 Accidental<br>Cover for 12 Months. On Us.</h1>
-                    <p class="mt-4 text-xl text-white font-medium drop-shadow-md max-w-lg">Peace of mind for you and your family, at <strong>zero cost to you</strong>. Find out if you qualify in 60 seconds.</p>
+                <div class="relative text-left z-20 p-6 md:p-16 h-full flex flex-col justify-end md:justify-center">
+                    <h1 class="text-2xl md:text-5xl font-extrabold text-white leading-tight drop-shadow-lg mb-2 md:mb-0">
+                        Get R25,000 Accidental<br class="md:hidden"> Cover. For 12 Months. On Us.
+                    </h1>
+                    <!-- this hides the Ptage-->
+                    <p class="hidden md:block mt-4 text-xl text-white font-medium drop-shadow-md max-w-lg">
+                        Peace of mind for you and your family, at <strong>zero cost to you</strong>. Find out if you qualify in 60 seconds.
+                    </p>
                 </div>
             </div>
 
-        
-            <div class="mb-10 text-center">
-                <button id="mainStartBtn" class="bg-brand-action hover:bg-brand-action-dark text-white font-bold py-3 px-8 rounded-full shadow-lg text-lg transition duration-300 btn-grow w-full md:w-auto">
+            <!-- Mobile Only: Peace of Mind "Island" Card -->
+            <!-- Updated: No negative margin, sits between hero and ticker -->
+            <div class="md:hidden relative z-30 mx-6 mt-4 mb-6">
+                <div class="bg-blue-50/95 backdrop-blur-sm rounded-xl shadow-lg p-4 text-center border border-blue-100">
+                    <p class="text-brand-blue text-sm leading-relaxed font-medium">
+                        Peace of mind for you and your family, at <strong class="font-bold">zero cost to you</strong>. Find out if you qualify in 60 seconds.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Desktop Only: Main Start Button -->
+            <div class="hidden md:block mb-10 text-center">
+                <button id="mainStartBtn" class="bg-brand-action hover:bg-brand-action-dark text-white font-bold py-3 md:py-3 px-8 rounded-full shadow-lg text-lg transition duration-300 btn-grow w-full md:w-auto active:scale-95">
                     Check if I Qualify
                 </button>
             </div>
 
-            <div class="bg-white text-slate-900 rounded-xl shadow-md p-4 mb-10 mx-0 md:mx-4 flex items-center overflow-hidden border-2 border-slate-300 border-l-8 border-l-slate-900">
-                <div class="flex-shrink-0 bg-slate-900 text-white px-3 py-1 rounded text-xs font-bold uppercase tracking-wider mr-3 shadow-sm">
+            <!-- Ticker: Optimized padding for mobile -->
+            <div class="bg-white text-slate-900 rounded-xl shadow-md p-2 md:p-4 mb-6 md:mb-10 mx-0 md:mx-4 flex items-center overflow-hidden border-2 border-slate-300 border-l-8 border-l-slate-900">
+                <div class="flex-shrink-0 bg-slate-900 text-white px-2 py-1 md:px-3 md:py-1 rounded text-[10px] md:text-xs font-bold uppercase tracking-wider mr-2 md:mr-3 shadow-sm">
                     FACTS
                 </div>
                 <div class="ticker-wrap">
                     <div class="ticker-move">
-                        <span id="scrollingTextThing" class="text-lg font-extrabold tracking-wide text-slate-800"></span>
+                        <!-- Ticker text size adjusted for mobile -->
+                        <span id="scrollingTextThing" class="text-sm md:text-lg font-extrabold tracking-wide text-slate-800"></span>
                     </div>
                 </div>
             </div>
 
-            <div class="bg-white-card rounded-xl shadow-lg p-8 md:p-10">
-                <h2 class="text-3xl font-bold text-center text-brand-blue mb-2">How It Works</h2>
-                <p class="text-center text-slate-400 text-sm mb-10">(Click on a step below to jump directly to it)</p>
+            <div class="bg-white-card rounded-xl shadow-lg p-4 md:p-10">
+                <h2 class="text-xl md:text-3xl font-bold text-center text-brand-blue mb-2">How It Works</h2>
+                <p class="text-center text-slate-400 text-xs md:text-sm mb-6 md:mb-10">(Click on a step below to jump directly to it)</p>
                 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center mb-12">
+                <!-- Steps: Changed from grid squares to rows on mobile -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-8 text-center mb-8 md:mb-12 relative">
                 
-                    <div onclick="switchScreens('checkingPage')" class="hover-pop relative flex flex-col items-center p-6 rounded-lg bg-slate-50 border border-slate-100 cursor-pointer">
-                        <span class="absolute top-3 right-3 bg-blue-100 text-brand-blue text-xs font-bold px-2 py-1 rounded">Step 1</span>
-                        <div class="flex items-center justify-center h-20 w-20 rounded-full bg-brand-secondary-blue text-brand-blue mb-4 shadow-sm">
-                            <svg class="h-10 w-10" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" /></svg>
+                    <div onclick="switchScreens('checkingPage')" class="hover-pop relative flex flex-row md:flex-col items-center p-4 md:p-6 rounded-lg bg-slate-50 border border-slate-100 cursor-pointer text-left md:text-center gap-4 md:gap-0 z-10">
+                        <span class="absolute top-3 right-3 bg-blue-100 text-brand-blue text-xs font-bold px-2 py-1 rounded hidden md:block">Step 1</span>
+                        <div class="step-connector"></div> <!-- Mobile connecting line -->
+                        
+                        <span class="md:hidden font-bold text-slate-300 text-3xl italic mr-2 w-6 text-center">1</span>
+
+                        <div class="flex-shrink-0 flex items-center justify-center h-14 w-14 md:h-20 md:w-20 rounded-full bg-brand-secondary-blue text-brand-blue md:mb-4 shadow-sm z-10 bg-white md:bg-brand-secondary-blue border-4 border-slate-50 md:border-0">
+                            <svg class="h-6 w-6 md:h-10 md:w-10" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" /></svg>
                         </div>
-                        <h3 class="text-xl font-bold text-brand-blue mb-2">Quick Check</h3>
-                        <p class="text-slate-600">Answer a few simple questions.</p>
+                        <div>
+                            <h3 class="text-base md:text-xl font-bold text-brand-blue mb-0 md:mb-2">Quick Check</h3>
+                            <p class="text-slate-600 text-xs md:text-base">Answer a few simple questions.</p>
+                        </div>
                     </div>
                     
                     
-                    <div onclick="switchScreens('checkingPage')" class="hover-pop relative flex flex-col items-center p-6 rounded-lg bg-slate-50 border border-slate-100 cursor-pointer">
-                        <span class="absolute top-3 right-3 bg-blue-100 text-brand-blue text-xs font-bold px-2 py-1 rounded">Step 2</span>
-                        <div class="flex items-center justify-center h-20 w-20 rounded-full bg-brand-secondary-blue text-brand-blue mb-4 shadow-sm">
-                            <svg class="h-10 w-10" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
+                    <div onclick="switchScreens('checkingPage')" class="hover-pop relative flex flex-row md:flex-col items-center p-4 md:p-6 rounded-lg bg-slate-50 border border-slate-100 cursor-pointer text-left md:text-center gap-4 md:gap-0 z-10">
+                        <span class="absolute top-3 right-3 bg-blue-100 text-brand-blue text-xs font-bold px-2 py-1 rounded hidden md:block">Step 2</span>
+                        <div class="step-connector"></div> <!-- Mobile connecting line -->
+
+                        <span class="md:hidden font-bold text-slate-300 text-3xl italic mr-2 w-6 text-center">2</span>
+
+                        <div class="flex-shrink-0 flex items-center justify-center h-14 w-14 md:h-20 md:w-20 rounded-full bg-brand-secondary-blue text-brand-blue md:mb-4 shadow-sm z-10 bg-white md:bg-brand-secondary-blue border-4 border-slate-50 md:border-0">
+                            <svg class="h-6 w-6 md:h-10 md:w-10" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
                         </div>
-                        <h3 class="text-xl font-bold text-brand-blue mb-2">See Your Status</h3>
-                        <p class="text-slate-600">Instantly see your 'Cover Meter' result.</p>
+                        <div>
+                            <h3 class="text-base md:text-xl font-bold text-brand-blue mb-0 md:mb-2">See Your Status</h3>
+                            <p class="text-slate-600 text-xs md:text-base">Instantly see your 'Cover Meter'.</p>
+                        </div>
                     </div>
                     
                 
-                    <div onclick="goToAppPart()" class="hover-pop relative flex flex-col items-center p-6 rounded-lg bg-slate-50 border border-slate-100 cursor-pointer">
-                        <span class="absolute top-3 right-3 bg-blue-100 text-brand-blue text-xs font-bold px-2 py-1 rounded">Step 3</span>
-                        <div class="flex items-center justify-center h-20 w-20 rounded-full bg-yellow-100 text-yellow-600 mb-4 shadow-sm ring-4 ring-yellow-50">
-                            <svg class="h-10 w-10" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" /></svg>
+                    <div onclick="goToAppPart()" class="last-step hover-pop relative flex flex-row md:flex-col items-center p-4 md:p-6 rounded-lg bg-slate-50 border border-slate-100 cursor-pointer text-left md:text-center gap-4 md:gap-0 z-10">
+                        <span class="absolute top-3 right-3 bg-blue-100 text-brand-blue text-xs font-bold px-2 py-1 rounded hidden md:block">Step 3</span>
+                        <!-- No connector for last step -->
+                        <span class="md:hidden font-bold text-slate-300 text-3xl italic mr-2 w-6 text-center">3</span>
+
+                        <div class="flex-shrink-0 flex items-center justify-center h-14 w-14 md:h-20 md:w-20 rounded-full bg-yellow-100 text-yellow-600 md:mb-4 shadow-sm ring-4 ring-yellow-50 z-10 bg-white md:bg-yellow-100 border-4 border-slate-50 md:border-0">
+                            <svg class="h-6 w-6 md:h-10 md:w-10" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" /></svg>
                         </div>
-                        <h3 class="text-xl font-bold text-brand-blue mb-2">Activate Cover</h3>
-                        <p class="text-slate-600">Activate your cover instantly online.</p>
+                        <div>
+                            <h3 class="text-base md:text-xl font-bold text-brand-blue mb-0 md:mb-2">Activate Cover</h3>
+                            <p class="text-slate-600 text-xs md:text-base">Activate instantly online.</p>
+                        </div>
                     </div>
                 </div>
 
                 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 border-t border-slate-100 pt-10">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-8 border-t border-slate-100 pt-6 md:pt-10">
                     
                 
-                    <div class="flex flex-col gap-6">
-                        <div class="hover-card-strong flex gap-4 bg-white border border-slate-100 rounded-xl p-5 shadow-sm">
+                    <div class="flex flex-col gap-3 md:gap-6">
+                        <!-- Redesigned Mobile Education Tabs: Tighter layout -->
+                        <div class="hover-card-strong flex flex-row md:flex-row gap-3 md:gap-4 bg-white border border-slate-100 rounded-xl p-3 md:p-5 shadow-sm items-start">
                             <div class="flex-shrink-0">
-                                <div class="h-12 w-12 rounded-full bg-blue-50 text-brand-action flex items-center justify-center">
-                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                <div class="h-10 w-10 md:h-12 md:w-12 rounded-full bg-blue-50 text-brand-action flex items-center justify-center">
+                                    <svg class="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                                 </div>
                             </div>
                             <div>
-                                <h4 class="font-bold text-brand-blue text-lg mb-1">What is Accidental Cover?</h4>
-                                <p class="text-slate-600 text-sm leading-relaxed">This policy pays out for any accidental death. This includes things like car accidents, slips and falls, drowning, fire-related accidents or violence.</p>
+                                <h4 class="font-bold text-brand-blue text-sm md:text-lg mb-1">What is Accidental Cover?</h4>
+                                <p class="text-slate-600 text-xs md:text-sm leading-relaxed">This policy pays out for any accidental death. This includes things like car accidents, slips and falls, drowning, fire-related accidents or violence.</p>
                             </div>
                         </div>
 
-                        <div class="hover-card-strong flex gap-4 bg-white border border-slate-100 rounded-xl p-5 shadow-sm">
+                        <div class="hover-card-strong flex flex-row md:flex-row gap-3 md:gap-4 bg-white border border-slate-100 rounded-xl p-3 md:p-5 shadow-sm items-start">
                             <div class="flex-shrink-0">
-                                <div class="h-12 w-12 rounded-full bg-blue-50 text-brand-action flex items-center justify-center">
-                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                <div class="h-10 w-10 md:h-12 md:w-12 rounded-full bg-blue-50 text-brand-action flex items-center justify-center">
+                                    <svg class="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                                 </div>
                             </div>
                             <div>
-                                <h4 class="font-bold text-brand-blue text-lg mb-1">No Premiums for 12 Months</h4>
-                                <p class="text-slate-600 text-sm leading-relaxed">This cover is yours for a full year. There are <strong>no premiums and no cost</strong> to you. No strings attached.</p>
+                                <h4 class="font-bold text-brand-blue text-sm md:text-lg mb-1">No Premiums for 12 Months</h4>
+                                <p class="text-slate-600 text-xs md:text-sm leading-relaxed">This cover is yours for a full year. There are <strong>no premiums and no cost</strong> to you. No strings attached.</p>
                             </div>
                         </div>
                     </div>
 
-                    <div class="bg-emerald-50 border border-emerald-100 rounded-xl p-6 flex flex-col justify-center shadow-sm hover:shadow-lg transition-shadow duration-300">
-                        <div class="flex items-center gap-3 mb-4">
-                            <div class="bg-emerald-100 p-2 rounded-full">
-                                <svg class="w-6 h-6 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                    <div class="bg-emerald-50 border border-emerald-100 rounded-xl p-3 md:p-6 flex flex-col justify-center shadow-sm hover:shadow-lg transition-shadow duration-300">
+                        <div class="flex items-center gap-2 md:gap-3 mb-2 md:mb-4">
+                            <div class="bg-emerald-100 p-1.5 md:p-2 rounded-full">
+                                <svg class="w-5 h-5 md:w-6 md:h-6 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
                             </div>
-                            <h4 class="font-bold text-emerald-800 text-xl">Why Is This Important?</h4>
+                            <h4 class="font-bold text-emerald-800 text-base md:text-xl">Why Is This Important?</h4>
                         </div>
                         
-                        <p class="text-emerald-700 mb-4 font-medium">In South Africa, accidents are a daily reality:</p>
-                        <ul class="space-y-3">
-                            <li class="flex items-start gap-3 text-emerald-800 text-sm">
-                                <svg class="w-5 h-5 text-emerald-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4"></path></svg>
+                        <p class="text-emerald-700 mb-2 md:mb-4 font-medium text-xs md:text-base">In South Africa, accidents are a daily reality:</p>
+                        <ul class="space-y-1 md:space-y-3">
+                            <li class="flex items-start gap-2 md:gap-3 text-emerald-800 text-xs md:text-sm">
+                                <svg class="w-4 h-4 md:w-5 md:h-5 text-emerald-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4"></path></svg>
                                 South Africa has one of the highest road accident rates in the world.
                             </li>
-                            <li class="flex items-start gap-3 text-emerald-800 text-sm">
-                                <svg class="w-5 h-5 text-emerald-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4"></path></svg>
+                            <li class="flex items-start gap-2 md:gap-3 text-emerald-800 text-xs md:text-sm">
+                                <svg class="w-4 h-4 md:w-5 md:h-5 text-emerald-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4"></path></svg>
                                 Accidents at home or work, like slips and falls, are tragically common.
                             </li>
-                            <li class="flex items-start gap-3 text-emerald-800 text-sm">
-                                <svg class="w-5 h-5 text-emerald-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4"></path></svg>
+                            <li class="flex items-start gap-2 md:gap-3 text-emerald-800 text-xs md:text-sm">
+                                <svg class="w-4 h-4 md:w-5 md:h-5 text-emerald-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4"></path></svg>
                                 Unforeseen events can leave a family financially vulnerable. This cover provides a crucial safety net.
                             </li>
                         </ul>
@@ -335,8 +392,8 @@
 
                 </div>
 
-                <div class="text-center mt-12">
-                    <button id="bottomStartBtn" class="btn-grow w-full md:w-auto bg-brand-action hover:bg-brand-action-dark text-white font-bold py-4 px-12 rounded-full shadow-lg text-xl transition duration-300">
+                <div class="text-center mt-6 md:mt-12">
+                    <button id="bottomStartBtn" class="btn-grow w-full md:w-auto bg-brand-action hover:bg-brand-action-dark text-white font-bold py-3 md:py-4 px-12 rounded-full shadow-lg text-lg md:text-xl transition duration-300 active:scale-95">
                         See If I Qualify
                     </button>
                 </div>
@@ -346,45 +403,45 @@
 
         <section id="checkingPage" class="hidden">
             <div class="bg-white-card rounded-xl shadow-lg overflow-hidden">
-                <div class="h-40 w-full relative">
+                <div class="h-32 md:h-40 w-full relative">
                     <img src="https://images.unsplash.com/photo-1476703993599-0035a21b17a9?q=80&w=2670&auto=format&fit=crop" 
                          alt="Protected Family" 
                          class="w-full h-full object-cover">
                     <div class="absolute inset-0 bg-brand-blue/60 flex items-center justify-center">
 
-                        <h3 class="font-display text-white text-3xl font-bold px-4 text-center drop-shadow-md">Protecting what matters most</h3>
+                        <h3 class="font-display text-white text-xl md:text-3xl font-bold px-4 text-center drop-shadow-md">Protecting what matters most</h3>
                     </div>
                 </div>
 
-                <div class="p-8 md:p-10">
+                <div class="p-4 md:p-10">
                     <button class="text-sm text-brand-action hover:underline mb-6 font-semibold" onclick="switchScreens('landingPage')">&larr; Back to Home</button>
-                    <h2 class="text-3xl font-bold text-center text-brand-blue mb-8">Let's Check Your Status</h2>
+                    <h2 class="text-xl md:text-3xl font-bold text-center text-brand-blue mb-6 md:mb-8">Let's Check Your Status</h2>
                     
                     <div class="max-w-lg mx-auto">
-                        <div class="space-y-6">
+                        <div class="space-y-4 md:space-y-6">
                             <div>
                                 <label for="ageInput" class="block text-sm font-bold text-slate-700 mb-1">How old are you?</label>
-                                <input type="number" id="ageInput" name="age" class="w-full rounded-lg border-slate-300 shadow-sm focus:border-brand-action focus:ring-brand-action p-3 border" placeholder="e.g., 35" required>
+                                <input type="number" id="ageInput" name="age" class="w-full rounded-lg border-slate-300 shadow-sm focus:border-brand-action focus:ring-brand-action p-3 md:p-3 border text-base" placeholder="e.g., 35" required>
                             </div>
 
                             <div>
                                 <label for="contactInput" class="block text-sm font-bold text-slate-700 mb-1">Contact Number</label>
-                                <input type="tel" id="contactInput" name="contact" class="w-full rounded-lg border-slate-300 shadow-sm focus:border-brand-action focus:ring-brand-action p-3 border" placeholder="082 123 4567" required>
+                                <input type="tel" id="contactInput" name="contact" class="w-full rounded-lg border-slate-300 shadow-sm focus:border-brand-action focus:ring-brand-action p-3 md:p-3 border text-base" placeholder="082 123 4567" required>
                             </div>
 
                             <div>
                                 <label for="altContactInput" class="block text-sm font-bold text-slate-700 mb-1">Alternative Contact Number <span class="text-xs font-normal text-slate-500">(Optional)</span></label>
-                                <input type="tel" id="altContactInput" name="alt-contact" class="w-full rounded-lg border-slate-300 shadow-sm focus:border-brand-action focus:ring-brand-action p-3 border">
+                                <input type="tel" id="altContactInput" name="alt-contact" class="w-full rounded-lg border-slate-300 shadow-sm focus:border-brand-action focus:ring-brand-action p-3 md:p-3 border text-base">
                             </div>
 
                             <div>
                                 <label for="emailInput" class="block text-sm font-bold text-slate-700 mb-1">Email Address <span class="text-xs font-normal text-slate-500">(Optional)</span></label>
-                                <input type="email" id="emailInput" name="email-check" class="w-full rounded-lg border-slate-300 shadow-sm focus:border-brand-action focus:ring-brand-action p-3 border" placeholder="you@example.com">
+                                <input type="email" id="emailInput" name="email-check" class="w-full rounded-lg border-slate-300 shadow-sm focus:border-brand-action focus:ring-brand-action p-3 md:p-3 border text-base" placeholder="you@example.com">
                             </div>
 
                             <div>
                                 <label for="salaryInput" class="block text-sm font-bold text-slate-700 mb-1">How much do you earn per month?</label>
-                                <select id="salaryInput" name="salary" class="w-full rounded-lg border-slate-300 shadow-sm focus:border-brand-action focus:ring-brand-action p-3 border" required>
+                                <select id="salaryInput" name="salary" class="w-full rounded-lg border-slate-300 shadow-sm focus:border-brand-action focus:ring-brand-action p-3 md:p-3 border text-base" required>
                                     <option value="">Please select</option>
                                     <option value="<10k">R2,500 - R9,999</option>
                                     <option value="10k-19k">R10,000 - R19,999</option>
@@ -395,12 +452,12 @@
 
                             <div>
                                 <label class="block text-sm font-bold text-slate-700 mb-2">Are you a South African citizen?</label>
-                                <div class="flex gap-6">
-                                    <label class="flex items-center p-3 border rounded-lg w-full cursor-pointer hover:bg-slate-50">
-                                        <input type="radio" name="citizen" id="citizenYes" value="yes" class="h-5 w-5 text-brand-action border-slate-300 focus:ring-brand-action">
+                                <div class="flex gap-4 md:gap-6">
+                                    <label class="flex items-center p-3 border rounded-lg w-full cursor-pointer hover:bg-slate-50 active:bg-slate-100">
+                                        <input type="radio" name="citizen" id="citizenYes" value="yes" class="h-5 w-5 text-brand-action border-slate-300 focus:ring-brand-action" checked>
                                         <span class="ml-2 text-sm font-medium text-slate-700">Yes</span>
                                     </label>
-                                    <label class="flex items-center p-3 border rounded-lg w-full cursor-pointer hover:bg-slate-50">
+                                    <label class="flex items-center p-3 border rounded-lg w-full cursor-pointer hover:bg-slate-50 active:bg-slate-100">
                                         <input type="radio" name="citizen" id="citizenNo" value="no" class="h-5 w-5 text-brand-action border-slate-300 focus:ring-brand-action">
                                         <span class="ml-2 text-sm font-medium text-slate-700">No</span>
                                     </label>
@@ -408,24 +465,24 @@
                             </div>
                         </div>
 
-                        <div class="text-center mt-8">
-                            <button id="checkCoverBtn" class="btn-grow w-full md:w-auto bg-brand-action hover:bg-brand-action-dark text-white font-bold py-4 px-10 rounded-lg shadow-lg text-lg transition duration-300">
+                        <div class="text-center mt-6 md:mt-8">
+                            <button id="checkCoverBtn" class="btn-grow w-full md:w-auto bg-brand-action hover:bg-brand-action-dark text-white font-bold py-3 md:py-4 px-10 rounded-lg shadow-lg text-lg transition duration-300 active:scale-95">
                                 Show Cover I Qualify For
                             </button>
                         </div>
                     </div>
 
-                    <div id="resultsArea" class="hidden mt-10 border-t-2 border-slate-100 pt-10 text-center animate-fade-in">
+                    <div id="resultsArea" class="hidden mt-8 md:mt-10 border-t-2 border-slate-100 pt-8 md:pt-10 text-center animate-fade-in">
                         
-                        <div class="flex justify-center mb-6">
+                        <div class="flex justify-center mb-4 md:mb-6 scale-90 md:scale-100 origin-top">
                             <div class="cover-meter-base">
                                 <div class="cover-meter-inner"></div>
                                 <div id="spinnyNeedle" class="cover-meter-needle"></div>
                             </div>
                         </div>
                         
-                        <div id="resultWords" class="mb-8"></div>
-                        <div id="resultButtons" class="flex flex-col md:flex-row gap-4 justify-center items-center"></div>
+                        <div id="resultWords" class="mb-6 md:mb-8"></div>
+                        <div id="resultButtons" class="flex flex-col md:flex-row gap-3 md:gap-4 justify-center items-center"></div>
                     </div>
                 </div>
             </div>
@@ -434,38 +491,38 @@
         <section id="appPage" class="hidden">
             <div class="bg-white-card rounded-xl shadow-lg overflow-hidden">
 
-                <div class="h-80 w-full relative">
+                <div class="h-48 md:h-80 w-full relative">
                     <img src="https://images.unsplash.com/photo-1531983412531-1f49a365ffed?q=80&w=2670&auto=format&fit=crop" 
                          alt="Mother holding child safe" 
                          class="w-full h-full object-cover object-center">
                     <div class="absolute inset-0 bg-gradient-to-b from-transparent via-brand-blue/40 to-brand-blue/90 flex items-center justify-center">
-                        <h3 class="font-display text-white text-3xl md:text-4xl font-bold px-6 text-center drop-shadow-md leading-normal">
+                        <h3 class="font-display text-white text-2xl md:text-4xl font-bold px-6 text-center drop-shadow-md leading-normal">
                             Almost There...<br>
-                            <span class="text-blue-100 font-normal text-2xl md:text-3xl mt-2 block font-sans">One last step to secure their future.</span>
+                            <span class="text-blue-100 font-normal text-xl md:text-3xl mt-2 block font-sans">One last step to secure their future.</span>
                         </h3>
                     </div>
                 </div>
 
-                <div class="p-8 md:p-10">
+                <div class="p-4 md:p-10">
                     
                     <button id="goBackBtn" class="text-sm text-brand-action hover:underline mb-6 font-semibold" onclick="switchScreens('landingPage')">&larr; Back to Home</button>
                     
-                    <div id="bouncerDiv" class="mb-10 hidden relative z-20">
-                        <div class="bg-slate-50 border-2 border-slate-200 rounded-xl p-6 md:p-8 shadow-xl">
-                            <div class="flex items-center gap-3 mb-6">
-                                <div class="bg-brand-blue text-white rounded-full h-8 w-8 flex items-center justify-center font-bold text-sm">1</div>
-                                <h3 class="text-2xl font-bold text-brand-blue">Quick Eligibility Check</h3>
+                    <div id="bouncerDiv" class="mb-8 md:mb-10 hidden relative z-20">
+                        <div class="bg-slate-50 border-2 border-slate-200 rounded-xl p-4 md:p-8 shadow-xl">
+                            <div class="flex items-center gap-2 md:gap-3 mb-4 md:mb-6">
+                                <div class="bg-brand-blue text-white rounded-full h-6 w-6 md:h-8 md:w-8 flex items-center justify-center font-bold text-xs md:text-sm">1</div>
+                                <h3 class="text-xl md:text-2xl font-bold text-brand-blue">Quick Eligibility Check</h3>
                             </div>
-                            <p class="text-slate-600 mb-6">Before we activate your cover, we just need to verify a few quick details.</p>
+                            <p class="text-slate-600 mb-4 md:mb-6 text-sm md:text-base">Before we activate your cover, we just need to verify a few quick details.</p>
                             
-                            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-4 md:mb-6">
                                 <div>
                                     <label class="block text-sm font-bold text-slate-700 mb-1">Age</label>
-                                    <input type="number" id="gateAge" class="w-full rounded-lg border-slate-300 shadow-sm p-3 border focus:ring-brand-action focus:border-brand-action" placeholder="e.g. 35">
+                                    <input type="number" id="gateAge" class="w-full rounded-lg border-slate-300 shadow-sm p-3 border focus:ring-brand-action focus:border-brand-action text-base" placeholder="e.g. 35">
                                 </div>
                                 <div>
                                     <label class="block text-sm font-bold text-slate-700 mb-1">Monthly Income</label>
-                                    <select id="gateSalary" class="w-full rounded-lg border-slate-300 shadow-sm p-3 border focus:ring-brand-action focus:border-brand-action">
+                                    <select id="gateSalary" class="w-full rounded-lg border-slate-300 shadow-sm p-3 border focus:ring-brand-action focus:border-brand-action text-base">
                                         <option value="">Please select</option>
                                         <option value="<10k">R2,500 - R9,999</option>
                                         <option value="10k-19k">R10,000 - R19,999</option>
@@ -475,7 +532,7 @@
                                 </div>
                                 <div>
                                     <label class="block text-sm font-bold text-slate-700 mb-1">SA Citizen?</label>
-                                    <select id="gateCitizen" class="w-full rounded-lg border-slate-300 shadow-sm p-3 border focus:ring-brand-action focus:border-brand-action">
+                                    <select id="gateCitizen" class="w-full rounded-lg border-slate-300 shadow-sm p-3 border focus:ring-brand-action focus:border-brand-action text-base">
                                         <option value="">Please select</option>
                                         <option value="yes">Yes</option>
                                         <option value="no">No</option>
@@ -483,69 +540,69 @@
                                 </div>
                             </div>
 
-                            <button onclick="checkEligibility()" class="w-full bg-brand-blue hover:bg-slate-800 text-white font-bold py-3 rounded-lg transition shadow-md">
+                            <button onclick="checkEligibility()" class="w-full bg-brand-blue hover:bg-slate-800 text-white font-bold py-3 rounded-lg transition shadow-md active:scale-95">
                                 Show Cover I Qualify For
                             </button>
                             
-                            <div id="nopeMsg" class="hidden mt-4 p-4 bg-red-50 text-red-700 border-l-4 border-red-500 rounded"></div>
+                            <div id="nopeMsg" class="hidden mt-4 p-3 md:p-4 bg-red-50 text-red-700 border-l-4 border-red-500 rounded text-sm md:text-base"></div>
                         </div>
                     </div>
 
                     
                     <div id="realFormDiv" class="transition-all duration-700 ease-in-out">
-                        <div class="flex items-center gap-3 mb-6 border-b border-slate-100 pb-4">
-                            <h2 class="text-3xl font-bold text-brand-blue">Secure Your 12-Month Cover</h2>
+                        <div class="flex items-center gap-3 mb-4 md:mb-6 border-b border-slate-100 pb-4">
+                            <h2 class="text-xl md:text-3xl font-bold text-brand-blue">Secure Your 12-Month Cover</h2>
                         </div>
                         
-                        <p class="text-slate-600 mb-8 text-lg">Please confirm your details below to activate your cover instantly.</p>
+                        <p class="text-slate-600 mb-6 md:mb-8 text-sm md:text-lg">Please confirm your details below to activate your cover instantly.</p>
 
-                        <form class="max-w-lg mx-auto space-y-5">
-                            <h3 class="text-lg font-bold text-brand-blue border-b border-slate-200 pb-2">Your Details</h3>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <form class="max-w-lg mx-auto space-y-4 md:space-y-5">
+                            <h3 class="text-base md:text-lg font-bold text-brand-blue border-b border-slate-200 pb-2">Your Details</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
                                 <div>
                                     <label for="fName" class="block text-sm font-medium text-slate-700">First Name</label>
-                                    <input type="text" id="fName" class="mt-1 block w-full rounded-md border-slate-300 shadow-sm p-3 border">
+                                    <input type="text" id="fName" class="mt-1 block w-full rounded-md border-slate-300 shadow-sm p-3 border text-base">
                                 </div>
                                 <div>
                                     <label for="sName" class="block text-sm font-medium text-slate-700">Surname</label>
-                                    <input type="text" id="sName" class="mt-1 block w-full rounded-md border-slate-300 shadow-sm p-3 border">
+                                    <input type="text" id="sName" class="mt-1 block w-full rounded-md border-slate-300 shadow-sm p-3 border text-base">
                                 </div>
                             </div>
                             <div>
                                 <label for="idNum" class="block text-sm font-medium text-slate-700">ID Number</label>
-                                <input type="text" id="idNum" class="mt-1 block w-full rounded-md border-slate-300 shadow-sm p-3 border" placeholder="Your 13-digit SA ID">
+                                <input type="text" id="idNum" class="mt-1 block w-full rounded-md border-slate-300 shadow-sm p-3 border text-base" placeholder="Your 13-digit SA ID">
                                 <p class="text-xs text-slate-500 mt-1">Entering your ID will automatically calculate your Date of Birth and Age.</p>
                             </div>
                             
-                            <div class="grid grid-cols-2 gap-4">
+                            <div class="grid grid-cols-2 gap-3 md:gap-4">
                                 <div>
                                     <label for="birthDate" class="block text-sm font-medium text-slate-700">Date of Birth</label>
-                                    <input type="date" id="birthDate" class="mt-1 block w-full rounded-md border-slate-300 shadow-sm p-3 border">
+                                    <input type="date" id="birthDate" class="mt-1 block w-full rounded-md border-slate-300 shadow-sm p-3 border text-base">
                                 </div>
                                 <div>
                                     <label for="howOld" class="block text-sm font-medium text-slate-700">Age</label>
-                                    <input type="text" id="howOld" class="mt-1 block w-full rounded-md border-slate-300 shadow-sm p-3 border bg-slate-100 text-slate-500 font-bold" readonly>
+                                    <input type="text" id="howOld" class="mt-1 block w-full rounded-md border-slate-300 shadow-sm p-3 border bg-slate-100 text-slate-500 font-bold text-base" readonly>
                                 </div>
                             </div>
 
                             <div>
                                 <label for="phoneNum" class="block text-sm font-medium text-slate-700">Contact Number</label>
-                                <input type="tel" id="phoneNum" class="mt-1 block w-full rounded-md border-slate-300 shadow-sm p-3 border">
+                                <input type="tel" id="phoneNum" class="mt-1 block w-full rounded-md border-slate-300 shadow-sm p-3 border text-base">
                             </div>
 
                             <div>
                                 <label for="otherPhone" class="block text-sm font-medium text-slate-700">Alternative Contact Number <span class="text-xs font-normal text-slate-500">(Optional)</span></label>
-                                <input type="tel" id="otherPhone" class="mt-1 block w-full rounded-md border-slate-300 shadow-sm p-3 border">
+                                <input type="tel" id="otherPhone" class="mt-1 block w-full rounded-md border-slate-300 shadow-sm p-3 border text-base">
                             </div>
 
                             <div>
                                 <label for="mailAddr" class="block text-sm font-medium text-slate-700">Email Address <span class="text-xs font-normal text-slate-500">(Optional)</span></label>
-                                <input type="email" id="mailAddr" class="mt-1 block w-full rounded-md border-slate-300 shadow-sm p-3 border">
+                                <input type="email" id="mailAddr" class="mt-1 block w-full rounded-md border-slate-300 shadow-sm p-3 border text-base">
                             </div>
 
                             <div>
                                 <label for="moneyMaker" class="block text-sm font-medium text-slate-700">Estimated Monthly Income</label>
-                                <select id="moneyMaker" class="mt-1 block w-full rounded-md border-slate-300 shadow-sm p-3 border">
+                                <select id="moneyMaker" class="mt-1 block w-full rounded-md border-slate-300 shadow-sm p-3 border text-base">
                                     <option value="">Please select</option>
                                     <option value="<10k">R2,500 - R9,999</option>
                                     <option value="10k-19k">R10,000 - R19,999</option>
@@ -556,27 +613,27 @@
 
                             <div>
                                 <label class="block text-sm font-medium text-slate-700 mb-2">Are you a South African citizen?</label>
-                                <div class="flex gap-6">
-                                    <label class="flex items-center p-3 border rounded-lg w-full cursor-pointer hover:bg-slate-50">
+                                <div class="flex gap-4 md:gap-6">
+                                    <label class="flex items-center p-3 border rounded-lg w-full cursor-pointer hover:bg-slate-50 active:bg-slate-100">
                                         <input type="radio" name="app-citizen" id="citizenYesApp" value="yes" class="h-5 w-5 text-brand-action border-slate-300 focus:ring-brand-action" checked>
                                         <span class="ml-2 text-sm font-medium text-slate-700">Yes</span>
                                     </label>
-                                    <label class="flex items-center p-3 border rounded-lg w-full cursor-pointer hover:bg-slate-50">
+                                    <label class="flex items-center p-3 border rounded-lg w-full cursor-pointer hover:bg-slate-50 active:bg-slate-100">
                                         <input type="radio" name="app-citizen" id="citizenNoApp" value="no" class="h-5 w-5 text-brand-action border-slate-300 focus:ring-brand-action">
                                         <span class="ml-2 text-sm font-medium text-slate-700">No</span>
                                     </label>
                                 </div>
                             </div>
 
-                            <div class="flex items-start pt-4 bg-slate-50 p-4 rounded-lg">
+                            <div class="flex items-start pt-4 bg-slate-50 p-3 md:p-4 rounded-lg">
                                 <input id="agreed" name="terms" type="checkbox" class="h-5 w-5 text-brand-action border-slate-300 rounded mt-1">
                                 <label for="agreed" class="ml-3 block text-sm text-slate-700">
                                     I understand this is a 12-month cover at no cost and I accept the <a href="2024.pdf" target="_blank" class="text-brand-action hover:underline font-bold">Terms & Conditions</a>.
                                 </label>
                             </div>
 
-                            <div class="text-center pt-6">
-                                <button type="button" onclick="switchScreens('yaySection')" class="btn-grow w-full md:w-auto bg-brand-action hover:bg-brand-action-dark text-white font-bold py-4 px-10 rounded-lg shadow-lg text-lg transition duration-300">
+                            <div class="text-center pt-4 md:pt-6">
+                                <button type="button" onclick="switchScreens('yaySection')" class="btn-grow w-full md:w-auto bg-brand-action hover:bg-brand-action-dark text-white font-bold py-3 md:py-4 px-10 rounded-lg shadow-lg text-lg transition duration-300 active:scale-95">
                                     Activate My Cover Now
                                 </button>
                             </div>
@@ -591,65 +648,65 @@
         <section id="yaySection" class="hidden animate-fade-in">
             <div class="bg-white-card rounded-xl shadow-xl overflow-hidden">
                 
-                <div class="h-80 w-full relative">
+                <div class="h-64 md:h-80 w-full relative">
                     <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=2664&auto=format&fit=crop" 
                          alt="Happy Family Celebrating Cover" 
                          class="w-full h-full object-cover object-center">
                     <div class="absolute inset-0 bg-gradient-to-b from-transparent to-white"></div>
                 </div>
 
-                <div class="px-10 pb-16 -mt-12 relative z-10 text-center">
-                    <div class="flex items-center justify-center h-24 w-24 rounded-full bg-green-100 text-green-600 mx-auto mb-6 shadow-lg ring-4 ring-white">
-                        <svg class="h-12 w-12" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" /></svg>
+                <div class="px-4 md:px-10 pb-12 md:pb-16 -mt-12 relative z-10 text-center">
+                    <div class="flex items-center justify-center h-20 w-20 md:h-24 md:w-24 rounded-full bg-green-100 text-green-600 mx-auto mb-4 md:mb-6 shadow-lg ring-4 ring-white">
+                        <svg class="h-10 w-10 md:h-12 md:w-12" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" /></svg>
                     </div>
                     
-                    <h2 class="text-4xl font-extrabold text-brand-blue mb-4">Congratulations!</h2>
-                    <p class="text-xl text-slate-600 mb-8 max-w-2xl mx-auto">Your R25,000 12-Month Accidental Cover is active. A confirmation email and policy documents will be sent to you shortly.</p>
+                    <h2 class="text-2xl md:text-4xl font-extrabold text-brand-blue mb-3 md:mb-4">Congratulations!</h2>
+                    <p class="text-base md:text-xl text-slate-600 mb-6 md:mb-8 max-w-2xl mx-auto">Your R25,000 12-Month Accidental Cover is active. A confirmation email and policy documents will be sent to you shortly.</p>
                     
-                    <div class="border-t border-slate-200 my-8"></div>
+                    <div class="border-t border-slate-200 my-6 md:my-8"></div>
 
-                    <div class="bg-blue-50 border border-blue-100 rounded-xl p-8 max-w-3xl mx-auto shadow-sm">
-                        <h3 class="text-2xl font-bold text-brand-blue mb-2">Share the Peace of Mind</h3>
-                        <p class="text-slate-600 mb-6">Do you have a loved one who needs this cover? Refer them now so they can get covered too.</p>
+                    <div class="bg-blue-50 border border-blue-100 rounded-xl p-4 md:p-8 max-w-3xl mx-auto shadow-sm">
+                        <h3 class="text-lg md:text-2xl font-bold text-brand-blue mb-2">Share the Peace of Mind</h3>
+                        <p class="text-slate-600 mb-4 md:mb-6 text-sm md:text-base">Do you have a loved one who needs this cover? Refer them now so they can get covered too.</p>
                         
                         <div id="referralBtnArea">
-                            <button onclick="toggleReferral()" class="btn-grow bg-brand-action hover:bg-brand-action-dark text-white font-bold py-3 px-8 rounded-full shadow-md transition">
+                            <button onclick="toggleReferral()" class="btn-grow w-full md:w-auto bg-brand-action hover:bg-brand-action-dark text-white font-bold py-3 px-8 rounded-full shadow-md transition active:scale-95">
                                 Yes, Refer a Loved One
                             </button>
                         </div>
 
-                        <form id="referralForm" class="hidden space-y-4 mt-6 text-left max-w-md mx-auto" onsubmit="sendReferral(event)">
+                        <form id="referralForm" class="hidden space-y-3 md:space-y-4 mt-4 md:mt-6 text-left max-w-md mx-auto" onsubmit="sendReferral(event)">
                             <div>
                                 <label class="block text-sm font-medium text-slate-700">Friend's Name & Surname</label>
-                                <input type="text" id="friendName" required class="mt-1 block w-full rounded-md border-slate-300 shadow-sm p-3 border bg-white">
+                                <input type="text" id="friendName" required class="mt-1 block w-full rounded-md border-slate-300 shadow-sm p-3 border bg-white text-base">
                             </div>
                             
                             <div>
                                 <label class="block text-sm font-medium text-slate-700">Friend's Contact Number</label>
-                                <input type="tel" id="friendContact" required class="mt-1 block w-full rounded-md border-slate-300 shadow-sm p-3 border bg-white" placeholder="082 123 4567">
+                                <input type="tel" id="friendContact" required class="mt-1 block w-full rounded-md border-slate-300 shadow-sm p-3 border bg-white text-base" placeholder="082 123 4567">
                             </div>
                             <div>
                                 <label class="block text-sm font-medium text-slate-700">Friend's Email Address <span class="text-slate-400 font-normal">(Optional)</span></label>
-                                <input type="email" id="friendEmail" class="mt-1 block w-full rounded-md border-slate-300 shadow-sm p-3 border bg-white" placeholder="friend@example.com">
+                                <input type="email" id="friendEmail" class="mt-1 block w-full rounded-md border-slate-300 shadow-sm p-3 border bg-white text-base" placeholder="friend@example.com">
                             </div>
 
-                            <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 rounded-md shadow transition">
+                            <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 rounded-md shadow transition active:scale-95">
                                 Send Referral
                             </button>
                         </form>
 
-                        <div id="referralDone" class="hidden mt-6 bg-green-100 text-green-800 p-4 rounded-lg">
+                        <div id="referralDone" class="hidden mt-4 md:mt-6 bg-green-100 text-green-800 p-3 md:p-4 rounded-lg text-sm md:text-base">
                             <strong>Thank You!</strong> We will reach out to your loved one shortly.
                         </div>
                     </div>
 
                     
-                    <div class="mt-10 flex flex-col items-center gap-4">
-                        <button onclick="openSummary()" class="text-brand-action hover:underline font-bold text-lg">
+                    <div class="mt-8 md:mt-10 flex flex-col items-center gap-3 md:gap-4">
+                        <button onclick="openSummary()" class="text-brand-action hover:underline font-bold text-base md:text-lg">
                             View My Policy Information
                         </button>
                         
-                        <button onclick="switchScreens('landingPage')" class="text-slate-500 hover:text-brand-action font-medium transition">&larr; Back to Home</button>
+                        <button onclick="switchScreens('landingPage')" class="text-slate-500 hover:text-brand-action font-medium transition text-sm md:text-base">&larr; Back to Home</button>
                     </div>
                 </div>
             </div>
@@ -658,70 +715,77 @@
     </main>
 
 
-    <section class="bg-slate-50 border-t border-slate-200 mt-8 py-8">
-        <div class="max-w-5xl mx-auto px-6 text-center">
+    <section class="bg-slate-50 border-t border-slate-200 mt-6 md:mt-8 py-6 md:py-8">
+        <div class="max-w-5xl mx-auto px-4 md:px-6 text-center">
             <div class="inline-flex flex-col items-center justify-center gap-2">
-                <p class="text-sm text-slate-500 font-medium uppercase tracking-wider">Trusted by South Africans</p>
+                <p class="text-xs md:text-sm text-slate-500 font-medium uppercase tracking-wider">Trusted by South Africans</p>
                 
-                <a href="https://www.hellopeter.com/alllife" target="_blank" class="flex flex-wrap justify-center items-center gap-3 bg-white px-6 py-3 rounded-full shadow-sm border border-slate-100 hover:shadow-md hover:bg-slate-50 transition-all cursor-pointer no-underline">
+                <a href="https://www.hellopeter.com/alllife" target="_blank" class="flex flex-wrap justify-center items-center gap-3 bg-white px-4 md:px-6 py-2 md:py-3 rounded-full shadow-sm border border-slate-100 hover:shadow-md hover:bg-slate-50 transition-all cursor-pointer no-underline scale-75 md:scale-100">
                     <div class="flex items-center gap-1">
-                        <span class="font-extrabold text-slate-800 text-xl tracking-tight">hello<span class="text-[#00d084]">peter</span></span>
+                        <span class="font-extrabold text-slate-800 text-lg md:text-xl tracking-tight">hello<span class="text-[#00d084]">peter</span></span>
                     </div>
                     <div class="hidden sm:block h-6 w-px bg-slate-200 mx-2"></div>
                     <div class="flex text-yellow-400">
-                        <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                        <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                        <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                        <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                        <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                        <svg class="w-4 h-4 md:w-5 md:h-5 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                        <svg class="w-4 h-4 md:w-5 md:h-5 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                        <svg class="w-4 h-4 md:w-5 md:h-5 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                        <svg class="w-4 h-4 md:w-5 md:h-5 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                        <svg class="w-4 h-4 md:w-5 md:h-5 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
                     </div>
-                    <span class="font-bold text-slate-700 ml-1">4.84/5</span>
+                    <span class="font-bold text-slate-700 ml-1 text-sm md:text-base">4.84/5</span>
                 </a>
-                <p class="text-xs text-slate-400 mt-1">Based on 4,828+ reviews</p>
+                <p class="text-[10px] md:text-xs text-slate-400 mt-1">Based on 4,828+ reviews</p>
             </div>
         </div>
     </section>
 
    
-    <footer class="bg-brand-blue text-white py-10 border-t border-blue-900 mb-0">
-        <div class="max-w-6xl mx-auto px-6 text-sm text-blue-200">
-            <div class="flex flex-col md:flex-row justify-between items-center md:items-start mb-8 gap-8">
+    <footer class="bg-brand-blue text-white py-6 md:py-10 border-t border-blue-900 mb-0">
+        <div class="max-w-6xl mx-auto px-4 md:px-6 text-sm text-blue-200">
+            <div class="flex flex-col md:flex-row justify-between items-center md:items-start mb-6 md:mb-8 gap-4 md:gap-8">
                <div class="max-w-sm text-center md:text-left">
                    
                 
-                   <img src="alllife-light-logo-new.png" alt="AllLife" class="h-12 mb-4 w-auto mx-auto md:mx-0" onerror="this.src='https://placehold.co/120x50/0d2c54/white?text=AllLife'">
+                   <img src="alllife-light-logo-new.png" alt="AllLife" class="h-8 md:h-12 mb-3 md:mb-4 w-auto mx-auto md:mx-0" onerror="this.src='https://placehold.co/120x50/0d2c54/white?text=AllLife'">
                    
-                   <p>Pioneering life insurance for people living with chronic conditions.</p>
+                   <p class="text-xs md:text-sm">Pioneering life insurance for people living with chronic conditions.</p>
                </div>
 
                <div class="flex flex-col items-center md:items-end">
-                   <span class="text-xs text-blue-300 mb-2 uppercase tracking-widest">Underwritten By</span>
+                   <span class="text-[10px] md:text-xs text-blue-300 mb-2 uppercase tracking-widest">Underwritten By</span>
                    
-                   <img src="omart.png" alt="Old Mutual Alternative Risk Transfer" class="h-12 w-auto rounded p-2 shadow-sm" onerror="this.src='https://placehold.co/120x50?text=OMART'">
+                   <img src="omart.png" alt="Old Mutual Alternative Risk Transfer" class="h-8 md:h-12 w-auto rounded p-1.5 md:p-2 shadow-sm" onerror="this.src='https://placehold.co/120x50?text=OMART'">
                </div>
             </div>
 
-            <div class="border-t border-blue-800 pt-8 text-xs leading-relaxed text-center md:text-left">
+            <div class="border-t border-blue-800 pt-4 md:pt-8 text-[10px] md:text-xs leading-relaxed text-center md:text-left">
                 <p class="mb-2">AllLife (Pty) Ltd is an Authorised Financial Services Provider (FSP 4946).</p>
                 <p>Underwritten by Old Mutual Alternative Risk Transfer Limited (OMART), a Licensed Life Insurer and Authorised Financial Services Provider (FSP 242).</p>
-                <p class="mt-4">&copy; 2025 AllLife. All rights reserved.</p>
+                <p class="mt-3 md:mt-4">&copy; 2025 AllLife. All rights reserved.</p>
             </div>
         </div>
     </footer>
   
-    <div id="popupContainer" class="fixed bottom-6 left-6 z-40 flex flex-col gap-2 pointer-events-none"></div>
+    <!-- Sticky Mobile CTA Bar -->
+    <div id="mobileStickyCTA" class="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 p-4 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)] z-40 transition-transform duration-300">
+        <button onclick="switchScreens('checkingPage')" class="w-full bg-brand-action hover:bg-brand-action-dark text-white font-bold py-3 rounded-lg shadow-md active:scale-95 transition-transform">
+            Check if I Qualify
+        </button>
+    </div>
+
+    <div id="popupContainer" class="fixed bottom-20 left-4 md:bottom-6 md:left-6 z-40 flex flex-col gap-2 pointer-events-none"></div>
 
     <div id="summaryModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
         <div class="bg-white rounded-xl shadow-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto">
-            <div class="p-6 border-b border-slate-100 flex justify-between items-center">
-                <h3 class="text-xl font-bold text-brand-blue">Application Details</h3>
+            <div class="p-4 md:p-6 border-b border-slate-100 flex justify-between items-center">
+                <h3 class="text-lg md:text-xl font-bold text-brand-blue">Application Details</h3>
                 <button onclick="closeSummary()" class="text-slate-400 hover:text-slate-600">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    <svg class="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                 </button>
             </div>
-            <div id="summaryText" class="p-6 space-y-4">
+            <div id="summaryText" class="p-4 md:p-6 space-y-4">
                 </div>
-            <div class="p-6 bg-slate-50 rounded-b-xl text-center">
+            <div class="p-4 md:p-6 bg-slate-50 rounded-b-xl text-center">
                 <button onclick="closeSummary()" class="bg-brand-blue text-white font-bold py-2 px-6 rounded-lg hover:bg-opacity-90">Close</button>
             </div>
         </div>
@@ -748,6 +812,16 @@
             if (target) {
                 target.classList.remove('hidden');
                 window.scrollTo(0, 0);
+            }
+
+            // Manage sticky CTA visibility
+            const stickyCTA = document.getElementById('mobileStickyCTA');
+            if (stickyCTA) {
+                if (screenId === 'landingPage') {
+                    stickyCTA.classList.remove('translate-y-full');
+                } else {
+                    stickyCTA.classList.add('translate-y-full');
+                }
             }
         }
 
@@ -803,37 +877,37 @@
                     let reason = "Unfortunately, you don't qualify for this specific offer because " + fails.join(' and ') + ".";
                     
                     txt = `
-                        <h3 class="text-3xl font-bold text-red-600 mb-3">Application Requires Review</h3>
-                        <p class="text-slate-600 text-lg">${reason}</p>
-                        <p class="text-slate-600 text-lg mt-2">You can explore other comprehensive cover options available on our AllLife website using the button below.</p>
+                        <h3 class="text-2xl md:text-3xl font-bold text-red-600 mb-3">Application Requires Review</h3>
+                        <p class="text-slate-600 text-base md:text-lg">${reason}</p>
+                        <p class="text-slate-600 text-base md:text-lg mt-2">You can explore other comprehensive cover options available on our AllLife website using the button below.</p>
                     `;
                 
                     btnHtml = `
-                        <a href="https://alllife.co.za/" class="btn-grow button-link w-full md:w-auto bg-slate-500 hover:bg-slate-600 shadow-lg">Explore Other Covers</a>
+                        <a href="https://alllife.co.za/" class="btn-grow button-link w-full md:w-auto bg-slate-500 hover:bg-slate-600 shadow-lg active:scale-95">Explore Other Covers</a>
                     `;
                 } else { 
                     // green needle
                     cssClass = 'rotate-green';
                 
                     txt = `
-                        <h3 class="text-3xl font-bold text-green-600 mb-3">Great news!</h3>
+                        <h3 class="text-2xl md:text-3xl font-bold text-green-600 mb-3">Great news!</h3>
                         
-                        <div class="bg-green-50 border border-green-200 rounded-xl p-5 mb-6 max-w-xs mx-auto shadow-inner">
+                        <div class="bg-green-50 border border-green-200 rounded-xl p-4 md:p-5 mb-6 max-w-xs mx-auto shadow-inner">
                             <div class="flex justify-between items-center mb-2 opacity-70">
                                 <span class="text-slate-600 font-semibold text-sm uppercase tracking-wider">Standard Price</span>
                                 <span class="text-red-500 font-bold line-through text-lg">R150/pm</span>
                             </div>
                             <div class="flex justify-between items-center border-t border-green-200 pt-2">
                                 <span class="text-brand-blue font-bold text-lg">Your Price</span>
-                                <span class="text-green-600 font-black text-4xl">R0.00</span>
+                                <span class="text-green-600 font-black text-3xl md:text-4xl">R0.00</span>
                             </div>
                         </div>
 
-                        <p class="text-slate-600 text-lg">You pre-qualify for your R25,000 12-Month Accidental Cover, at no cost. What would you like to do next?</p>
+                        <p class="text-slate-600 text-base md:text-lg">You pre-qualify for your R25,000 12-Month Accidental Cover, at no cost. What would you like to do next?</p>
                     `;
                 
                     btnHtml = `
-                        <button onclick="goToAppPart()" class="btn-grow button-link w-full md:w-auto bg-brand-action hover:bg-brand-action-dark shadow-lg">Activate My Cover</button>
+                        <button onclick="goToAppPart()" class="btn-grow button-link w-full md:w-auto bg-brand-action hover:bg-brand-action-dark shadow-lg active:scale-95">Activate My Cover</button>
                     `;
                 }
                 
@@ -960,9 +1034,9 @@
                                 <div id="miniSpinny" class="cover-meter-needle"></div>
                             </div>
                         </div>
-                        <h3 class="text-2xl font-bold text-brand-blue mt-[-30px] mb-2" id="gateTitle">Checking Eligibility...</h3>
+                        <h3 class="text-xl md:text-2xl font-bold text-brand-blue mt-[-30px] mb-2" id="gateTitle">Checking Eligibility...</h3>
                         <div id="gateContent" class="opacity-0 transition-opacity duration-500">
-                            <p class="text-slate-500 mb-6">Verifying your profile details.</p>
+                            <p class="text-slate-500 mb-6 text-sm md:text-base">Verifying your profile details.</p>
                         </div>
                     </div>
                 `;
@@ -984,9 +1058,9 @@
                             let reason = "Unfortunately, you don't qualify for this specific offer because " + fails.join(' and ') + ".";
 
                             content.innerHTML = `
-                                <p class="text-slate-600 mb-6">${reason}</p>
+                                <p class="text-slate-600 mb-6 text-sm md:text-base">${reason}</p>
                                 <div class="flex flex-col gap-4 items-center">
-                                    <a href="https://alllife.co.za/" class="inline-block bg-slate-500 hover:bg-slate-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transition w-full md:w-auto">
+                                    <a href="https://alllife.co.za/" class="inline-block bg-slate-500 hover:bg-slate-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transition w-full md:w-auto active:scale-95">
                                         Explore Other Covers
                                     </a>
                                     <button onclick="tryAgain(${age}, '${salary}', '${citizen}')" class="text-slate-400 hover:text-brand-action underline text-sm transition">
@@ -1014,8 +1088,8 @@
                                 <div id="miniSpinny" class="cover-meter-needle"></div>
                             </div>
                         </div>
-                        <h3 class="text-2xl font-bold text-brand-blue mt-[-30px] mb-2" id="gateTitle">Checking Eligibility...</h3>
-                        <p class="text-slate-500" id="gateSub">Verifying your profile details.</p>
+                        <h3 class="text-xl md:text-2xl font-bold text-brand-blue mt-[-30px] mb-2" id="gateTitle">Checking Eligibility...</h3>
+                        <p class="text-slate-500 text-sm md:text-base" id="gateSub">Verifying your profile details.</p>
                     </div>
                 `;
 
@@ -1073,21 +1147,21 @@
             
             // just rebuilding the html string
             gateDiv.innerHTML = `
-                <div class="bg-slate-50 border-2 border-slate-200 rounded-xl p-6 md:p-8 shadow-xl">
-                    <div class="flex items-center gap-3 mb-6">
-                        <div class="bg-brand-blue text-white rounded-full h-8 w-8 flex items-center justify-center font-bold text-sm">1</div>
-                        <h3 class="text-2xl font-bold text-brand-blue">Quick Eligibility Check</h3>
+                <div class="bg-slate-50 border-2 border-slate-200 rounded-xl p-4 md:p-8 shadow-xl">
+                    <div class="flex items-center gap-2 md:gap-3 mb-4 md:mb-6">
+                        <div class="bg-brand-blue text-white rounded-full h-6 w-6 md:h-8 md:w-8 flex items-center justify-center font-bold text-xs md:text-sm">1</div>
+                        <h3 class="text-xl md:text-2xl font-bold text-brand-blue">Quick Eligibility Check</h3>
                     </div>
-                    <p class="text-slate-600 mb-6">Before we activate your cover, we just need to verify a few quick details.</p>
+                    <p class="text-slate-600 mb-4 md:mb-6 text-sm md:text-base">Before we activate your cover, we just need to verify a few quick details.</p>
                     
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-4 md:mb-6">
                         <div>
                             <label class="block text-sm font-bold text-slate-700 mb-1">Age</label>
-                            <input type="number" id="gateAge" value="${oldAge}" class="w-full rounded-lg border-slate-300 shadow-sm p-3 border focus:ring-brand-action focus:border-brand-action" placeholder="e.g. 35">
+                            <input type="number" id="gateAge" value="${oldAge}" class="w-full rounded-lg border-slate-300 shadow-sm p-3 border focus:ring-brand-action focus:border-brand-action text-base" placeholder="e.g. 35">
                         </div>
                         <div>
                             <label class="block text-sm font-bold text-slate-700 mb-1">Monthly Income</label>
-                            <select id="gateSalary" class="w-full rounded-lg border-slate-300 shadow-sm p-3 border focus:ring-brand-action focus:border-brand-action">
+                            <select id="gateSalary" class="w-full rounded-lg border-slate-300 shadow-sm p-3 border focus:ring-brand-action focus:border-brand-action text-base">
                                 <option value="">Please select</option>
                                 <option value="<10k" ${oldSalary === '<10k' ? 'selected' : ''}>R2,500 - R9,999</option>
                                 <option value="10k-19k" ${oldSalary === '10k-19k' ? 'selected' : ''}>R10,000 - R19,999</option>
@@ -1097,7 +1171,7 @@
                         </div>
                         <div>
                             <label class="block text-sm font-bold text-slate-700 mb-1">SA Citizen?</label>
-                            <select id="gateCitizen" class="w-full rounded-lg border-slate-300 shadow-sm p-3 border focus:ring-brand-action focus:border-brand-action">
+                            <select id="gateCitizen" class="w-full rounded-lg border-slate-300 shadow-sm p-3 border focus:ring-brand-action focus:border-brand-action text-base">
                                 <option value="">Please select</option>
                                 <option value="yes" ${oldCitizen === 'yes' ? 'selected' : ''}>Yes</option>
                                 <option value="no" ${oldCitizen === 'no' ? 'selected' : ''}>No</option>
@@ -1105,11 +1179,11 @@
                         </div>
                     </div>
 
-                    <button onclick="checkEligibility()" class="w-full bg-brand-blue hover:bg-slate-800 text-white font-bold py-3 rounded-lg transition shadow-md">
+                    <button onclick="checkEligibility()" class="w-full bg-brand-blue hover:bg-slate-800 text-white font-bold py-3 rounded-lg transition shadow-md active:scale-95">
                         Show Cover I Qualify For
                     </button>
                     
-                    <div id="nopeMsg" class="hidden mt-4 p-4 bg-red-50 text-red-700 border-l-4 border-red-500 rounded"></div>
+                    <div id="nopeMsg" class="hidden mt-4 p-3 md:p-4 bg-red-50 text-red-700 border-l-4 border-red-500 rounded text-sm md:text-base"></div>
                 </div>
             `;
         }
@@ -1205,7 +1279,7 @@
             else if(document.getElementById('citizenNoApp').checked) cz = 'No';
 
             const html = `
-                <div class="grid grid-cols-2 gap-4 text-sm">
+                <div class="grid grid-cols-2 gap-3 md:gap-4 text-sm">
                     <div><span class="block text-slate-500 text-xs">Full Name</span><span class="font-medium text-slate-800">${f} ${s}</span></div>
                     <div><span class="block text-slate-500 text-xs">ID Number</span><span class="font-medium text-slate-800">${i}</span></div>
                     <div><span class="block text-slate-500 text-xs">Date of Birth</span><span class="font-medium text-slate-800">${d}</span></div>
@@ -1266,14 +1340,14 @@
             peepIndex = (peepIndex + 1) % peeps.length;
             
             const n = document.createElement('div');
-            n.className = "notification-toast bg-white border-l-4 border-brand-action text-brand-blue p-5 rounded-xl shadow-2xl flex items-center gap-4 max-w-md transform transition-all duration-500";
+            n.className = "notification-toast bg-white border-l-4 border-brand-action text-brand-blue p-4 md:p-5 rounded-xl shadow-2xl flex items-center gap-3 md:gap-4 max-w-md transform transition-all duration-500";
             n.innerHTML = `
-                <div class="h-12 w-12 rounded-full bg-blue-100 text-brand-action flex items-center justify-center font-bold text-sm">
+                <div class="h-10 w-10 md:h-12 md:w-12 rounded-full bg-blue-100 text-brand-action flex items-center justify-center font-bold text-xs md:text-sm">
                     ${u.name.charAt(0)}
                 </div>
                 <div>
-                    <p class="text-base font-bold">${u.name} from ${u.location}</p>
-                    <p class="text-sm text-slate-500">Just ${u.action}</p>
+                    <p class="text-sm md:text-base font-bold">${u.name} from ${u.location}</p>
+                    <p class="text-xs md:text-sm text-slate-500">Just ${u.action}</p>
                 </div>
             `;
 
